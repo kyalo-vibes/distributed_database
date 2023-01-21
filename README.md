@@ -1,7 +1,3 @@
--Run siteAlinux - where vertical takes place. Runs on local(Windows & MySQL)[DONE]
--Run siteBwindows - where PHF takes place. Runs on VM(Linux & postgresql)[DONE]
--Run siteCwindows - where DHF takes place. Runs on local machine(windows & MYSQL)[DONE]
-
 # Distributed Database Mini Project
 
 **Description**
@@ -58,43 +54,33 @@ We started the full stack application for you. It is designed with some key func
 
 ### siteAWindows
 
-The [site A](./siteAwindows.py) file contains a our implementation of virtual fragmentation using the first application on the orders table and we create two fragments namely Q1 and Q2. The file contains the following:
+The [site A](./siteAwindows.py) file contains a our implementation of virtual fragmentation using the all applications and their attributes and we create two fragments namely Q1 and Q2. The file contains the following:
 1. `Connect to database`
 2. `Perform vertical fragmentation`
 3. `Display results`
 
-> View the [notebook](./lightgbm_model.ipynb) for more details.
+> View the [siteAwindows](./siteAwindows.py) for more details.
 
-### App
+### siteBLinux
 
-The [app](./app.py) file contains a FLASK application serving a RESTful API that will consume user input from a Flutter frontend and call the featureEngineering file. The predict API does the follwing:
+The [site B](./siteBlinux.py) file contains a our implementation of primary horizontal fragmentation using the first application on the orders table and we create two fragments namely phf1 and phf2. SInce phf1 is mostly accessed in site B we keep it here and ship phf2 to windows machine and perform schema translation for it to sit in the MySQL database. The file contains the following:
+1. `Connect to database`
+2. `Perform horizontal fragmentation`
+3. `Ship phf2 to windows machine as a python list`
+4. `Perform schema translation`
+5. `Display results`
 
-1. Takes user input from the form in the frontend.
-2. Creates a dataframe of all possible combinations with the columns `date, store, item, sales`.
-3. Calls the `featureEngineering` module to generate features using `input_data.csv`.
-4. Imports the `final_model.pkl` and passes the input to the model to perform prediction.
-5. Returns a json object with tht prediction.
+> View the [siteBLinux](./siteBlinux.py) for more details.
 
+### siteCwindows
 
-> View the [app](./app.py) for more details.
+The [site C](./siteCwindows.py) file contains a our implementation. We start with PHF to generate loc1 and loc2 from product table. Then derived horizontal fragmentation using products(loc1 and loc2) as owner table and inventory as member table and we create four fragments namely dhf1, dhf2, dhf3 and dhf4. Since dhf1 and dhf2 are accessed most here we keep in site C and ship dhf3 and dhf4 to site B. Since The file contains the following:
+1. `Connect to database`
+2. `Perform primary horizontal fragmentation`
+3. `Perform derived horizontal fragmentation`
+4. `Ship dhf3 and dhf4 to site B`
+5. `Perform schema translation`
+6. `Display results`
 
-### featureEngineering
+> View the [siteCwindows](./siteCwindows.py) for more details.
 
-The [featureEngineering](./featureEngineering.py) app takes in `input_data.csv` and performs feature engineering to the user input has the same number of features as the ones used when training the model.
-
-1. Takes user input from the Flask API.
-2. Generates features so that `input_data` has 25 features that model expects.
-3. Produces `X_test_final` that the Flask API will use to perform prediction.
-
-> View the [featureEngineering](./featureEngineering.py) for more details.
-
-### gain
-
-The [gain](./gain.py) file contains the gain value which it obtains from the training dataset to trim features generated down to the 25 important features the model expects.
-
-1. Takes training dataset.
-2. Creates features using the dataset.
-3. Calculates gain of the features using the `first_model`.
-4. Outputs the gain to `featureEngineering`.
-
-> View the [gain](./gain.py) for more details.
