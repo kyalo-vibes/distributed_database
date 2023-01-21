@@ -51,7 +51,6 @@ siteAWindows.py
 siteBLinux.py
 siteCWindows.py
 ```
-```
 
 ## About the Stack
 
