@@ -2,9 +2,9 @@
 import mysql.connector
 import psycopg2
 
-#Site running on Windows with mysql. It stores the fragments for Derived Horizontal Fragmentation and Vertical Fragmentation
+#Site running on Windows with mysql. It stores the fragments for Primary Horizontal Fragmentation
 
-# connecting to the database
+# connecting to the MySQL database on the Windows machine
 dataBase = mysql.connector.connect(
 					host = "192.168.100.21",
                     port="3306",
@@ -12,10 +12,10 @@ dataBase = mysql.connector.connect(
 					passwd = "",
 					database = "mini_project")
 
-# preparing a cursor object
+# preparing a cursor object for the MySQL database
 cursorObject = dataBase.cursor(buffered=True)
 
-
+# connecting to the PostgreSQL database on the Linux machine
 local_stream = psycopg2.connect(
     host='127.0.0.1',
     port='5432',
@@ -24,22 +24,23 @@ local_stream = psycopg2.connect(
     password='postgres'
 )
 
+# preparing a cursor object for the PostgreSQL database
 local_cursor = local_stream.cursor()
 
 print("Vertical")
 print("Q1 = order_id, order_date, total_amount FROM orders: ")
 cursorObject.execute("USE mini_project")
-query4 = "SELECT order_id, order_date, total_amount FROM orders"
-cursorObject.execute(query4)
-query_four_result = cursorObject.fetchall()
-print(query_four_result)
+Q1 = "SELECT order_id, order_date, total_amount FROM orders"
+cursorObject.execute(Q1)
+Q1_result = cursorObject.fetchall()
+print(Q1_result)
 print("")
 
 print("Q2 = order_id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id: ")
-query5 = "SELECT order_id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id"
-cursorObject.execute(query5)
-query_five_result = cursorObject.fetchall()
-print(query_five_result)
+Q2 = "SELECT order_id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id"
+cursorObject.execute(Q2)
+Q2_result = cursorObject.fetchall()
+print(Q2_result)
 print("")
 
 dataBase.close()
