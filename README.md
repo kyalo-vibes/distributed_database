@@ -34,7 +34,7 @@ virtualenv project
 ```
 -Activate the virtual environment:
 ```bash
-flask\Scripts\activate
+source project/bin/activate
 ```
 -Install relevant libraries using:
 ```bash
