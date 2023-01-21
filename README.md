@@ -61,7 +61,7 @@ The [site A](./siteAwindows.py) file contains a our implementation of virtual fr
 
 > View the [siteAwindows](./siteAwindows.py) for more details.
 
-### siteBLinux
+### siteBLinux(DECISION SITE)
 
 The [site B](./siteBlinux.py) file contains a our implementation of primary horizontal fragmentation using the first application on the orders table and we create two fragments namely phf1 and phf2. SInce phf1 is mostly accessed in site B we keep it here and ship phf2 to windows machine and perform schema translation for it to sit in the MySQL database. The file contains the following:
 1. `Connect to database`
@@ -69,6 +69,9 @@ The [site B](./siteBlinux.py) file contains a our implementation of primary hori
 3. `Ship phf2 to windows machine as a python list`
 4. `Perform schema translation`
 5. `Display results`
+6. `Perform reconstruction of derived horizontal fragmentation`
+7. `Schema integration of fragments from MySQL and postgresql`
+8. `Display results`
 
 > View the [siteBLinux](./siteBlinux.py) for more details.
 
