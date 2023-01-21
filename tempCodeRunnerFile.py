@@ -1,0 +1,1 @@
+upstream_cursor.execute("USE hospital_management")

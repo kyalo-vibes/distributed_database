@@ -1,0 +1,3 @@
+-Run siteAlinux - where vertical takes place. Runs on local(Windows & MySQL)[DONE]
+-Run siteBwindows - where PHF takes place. Runs on VM(Linux & postgresql)[DONE]
+-Run siteCwindows - where DHF takes place. Runs on local machine(windows & MYSQL)[DONE]
