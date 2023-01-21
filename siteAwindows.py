@@ -2,7 +2,7 @@
 import mysql.connector
 import psycopg2
 
-#Site running on Windows with mysql. It stores the fragments for Primary Horizontal Fragmentation
+#Site running on Windows with mysql. It stores the fragments for Vertical Fragmentation
 
 # connecting to the MySQL database on the Windows machine
 dataBase = mysql.connector.connect(
@@ -27,6 +27,7 @@ local_stream = psycopg2.connect(
 # preparing a cursor object for the PostgreSQL database
 local_cursor = local_stream.cursor()
 
+# Create fragment Q1 which has affinities A1 and A2(orders.order_date, orders.total_amount)
 print("Vertical")
 print("Q1 = order_id, order_date, total_amount FROM orders: ")
 cursorObject.execute("USE mini_project")
@@ -36,6 +37,7 @@ Q1_result = cursorObject.fetchall()
 print(Q1_result)
 print("")
 
+# Create fragment Q2 which has affinities A3(customers.name)
 print("Q2 = order_id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id: ")
 Q2 = "SELECT order_id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id"
 cursorObject.execute(Q2)
